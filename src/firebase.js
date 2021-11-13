@@ -1,17 +1,18 @@
-import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-  
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyC00P2kyzVrA7CCg71z5MmlialvXfM-PQc",
-    authDomain: "userdashboard-dev.firebaseapp.com",
-    databaseURL: "https://userdashboard-dev-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "userdashboard-dev",
-    storageBucket: "userdashboard-dev.appspot.com",
-    messagingSenderId: "24179904215",
-    appId: "1:24179904215:web:e1164318c4416a11eb2a92"
-  };
-  
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore"
 
-  const app = initializeApp(firebaseConfig);
-  export const auth = getAuth(app)
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId:process.env. REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+
