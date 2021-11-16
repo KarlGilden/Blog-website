@@ -10,7 +10,7 @@ import Tag from '../components/Tag'
 function HomePage() {
     const { user, logout } = useAuth()
     const [loading, setLoading] = useState(true)
-    const [posts, setPosts] = useState()
+    const [posts, setPosts] = useState(["No posts yet!"])
     const postCollectionRef = collection(db, "posts")
     useEffect(()=>{
         getPosts()
@@ -33,9 +33,17 @@ function HomePage() {
         :
         <div className="content">
                 <Tag text={"Latest Posts"}/>
+                <div className="scrollable">
+                
                 {posts.map((post)=>{
-                    return <Link to={`/post/${post.id}`}><Post title={post.title} content={post.content.slice(0, 50) + "..."} date={post.timeCreated}/></Link>
+                    if(posts[0] == "No posts yet!"){
+                        return <p>No posts yet!</p>
+                    }else{
+                        return <Link to={`/post/${post.id}`}><Post title={post.title} content={post.content.slice(0, 50) + "..."} date={post.timeCreated}/></Link>
+                    } 
                 })}
+                </div>
+
         </div>
         }
             

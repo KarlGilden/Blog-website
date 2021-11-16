@@ -21,7 +21,6 @@ function Menubar() {
                 </div>
 
                 <Link className="nav-link" to="/">Home</Link>
-                <Link className="nav-link" to="/">All Posts</Link>
                 <Link className="nav-link" to="/add-post">New Post</Link>
                 <Link onClick={logout} className="nav-button" to="/">Log out</Link>
             </div>
@@ -38,7 +37,6 @@ function Menubar() {
             </div>
 
             <Link className="nav-link" to="/">Home</Link>
-            <Link className="nav-link" to="/">All Posts</Link>
             <Link className="nav-button" to="/login">Log in</Link>
 
         </div>
