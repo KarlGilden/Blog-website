@@ -45,7 +45,7 @@ function EditPage() {
     }
 
     return (
-        <div className="page-wrapper">
+        <div className="form-wrapper">
             {loading ? 
             <div className="content">
                 <div className="header">

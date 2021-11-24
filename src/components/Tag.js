@@ -2,7 +2,7 @@ import React from 'react'
 
 function Tag(props) {
     return (
-        <div className="tag primary-text">
+        <div className="tag secondary-text">
             <small>{props.text}</small>
         </div>
     )

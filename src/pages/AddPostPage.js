@@ -18,12 +18,13 @@ function AddPostPage() {
     }
 
     return (
-        <div className="page-wrapper">
+        <div className="form-wrapper">
             <div className="content">
                 <div><AiOutlineArrowLeft className="back-arrow" onClick={() => navigate(-1)}/></div>
                 <hr className="separator" />
                 <div className="form">
                     <input
+                    className="title-input"
                     placeholder="Title" 
                     type="text" 
                     onChange={(e)=>{

@@ -16,59 +16,39 @@ function Menubar() {
     }
     return (   
         <>
-        {user ? 
-
-            <div className="nav off-white">
+            <div className="nav">
                 <div className="logo-wrapper">
-                    <h3><img className="logo" src={logo} alt="NA" /><span className="blog-title">Blog</span></h3>
+                    <h1><img className="logo" src={logo} alt="" /><span className="blog-title">Blog</span></h1>
                 </div>
-                <div className="links menu-text">
+                <div className="links">
                     <Link className="nav-link" to="/">Home</Link>
-                    <Link className="nav-link" to="/add-post">New Post</Link>
                     <Link className="nav-link" to="/categories">Categories</Link>
-                    <Link onClick={logout} className="nav-button" to="/">Log out</Link>
+                    {user && <Link className="nav-link" to="/add-post">New Post</Link>}
+                    {user && <Link onClick={logout} className="nav-button" to="/">Log out</Link>}
+                    {!user && <Link className="nav-button" to="/login">Log in</Link>}
                 </div>
-                {clicked ? 
+
+                {clicked && 
                         <div className="small-links menu-text">
                             <Link className="nav-link" to="/">Home</Link>
-                            <Link className="nav-link" to="/add-post">New Post</Link>
                             <Link className="nav-link" to="/categories">Categories</Link>
-                            <Link onClick={logout} className="nav-button" to="/">Log out</Link>
+                            {user && <Link className="nav-link" to="/add-post">New Post</Link>}
+                            {user && <Link onClick={logout} className="nav-button" to="/">Log out</Link>}
+                            {!user && <Link className="nav-button" to="/login">Log in</Link>}
                         </div>
-                    :
-                    <></>
                 }
-                <div className="navbars" onClick={()=>{setClicked(!clicked)}}onClick={()=>{setClicked(!clicked)}}>
+                <div className="navbars" onClick={()=>{setClicked(!clicked)}}>
                     <FaBars />
                 </div>
 
+
             </div>
 
-        :
-        <div className="nav off-white">
-            <div className="logo-wrapper">
-                <h3><img className="logo" src={logo} alt="NA" /><span className="blog-title">Blog</span></h3>
-            </div>
-            <div className="links menu-text">
-                <Link className="nav-link" to="/">Home</Link>
-                <Link className="nav-link" to="/categories">Categories</Link>
-                <Link className="nav-button" to="/login">Log in</Link>
-            </div>
-            {clicked ? 
-                <div className="small-links menu-text">
-                    <Link className="nav-link" to="/">Home</Link>
-                    <Link className="nav-link" to="/categories">Categories</Link>
-                    <Link className="nav-button" to="/login">Log in</Link>
-                </div>
-                    :
-                    <></>
-                }
-            <div className="navbars" onClick={()=>{setClicked(!clicked)}}>
-                <FaBars />
-            </div>
-        </div>
 
-        }
+
+
+
+        
         </>
     )
 }

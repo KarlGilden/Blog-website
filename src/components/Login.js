@@ -34,7 +34,7 @@ function Login() {
 
     return (
         <>
-            <Card className="w-100 primary-bg primary-text ">
+            <Card className="w-100 primary-bg primary-text login-card">
                 <Card.Body>
                     <h2 className="text-center mb-4">Log in</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
