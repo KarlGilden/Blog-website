@@ -7,6 +7,7 @@ import Menubar from './components/Menubar';
 import PostView from './pages/PostView';
 import AddPostPage from './pages/AddPostPage';
 import PrivateRoute from './components/PrivateRoute';
+import EditPage from './pages/EditPage';
 function App() {
   return (
     <>
@@ -14,17 +15,29 @@ function App() {
         <AuthProvider>
           <Menubar/>
           <Routes>
+            
             <Route path="/" element={<HomePage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/post/:id" element={<PostView/>}/>
+            
             <Route
-            path="/add-post"
-            element={
-              <PrivateRoute>
-                <AddPostPage />
-              </PrivateRoute>
-          }
-        />
+              path="/edit/:id"
+              element={
+                <PrivateRoute>
+                  <EditPage />
+                </PrivateRoute>
+                }
+            />
+
+            <Route
+              path="/add-post"
+              element={
+                <PrivateRoute>
+                  <AddPostPage />
+                </PrivateRoute>
+                }
+            />
+
           </Routes>
         </AuthProvider>
       </Router>

@@ -4,3 +4,107 @@
   padding: 0;
   font-family: "Lato";
 }
+body{
+  background-color: #E1E2E2;
+}
+
+.menu-text{
+  font-size: 1em;
+}
+
+.primary-bg{
+  background-color: #1D2228;
+}
+
+.primary-fg{
+  background-color: #FB8122;
+}
+
+.off-white{
+  background-color: #E1E2E2;
+}
+
+.primary-text{
+  color: #E1E2E2;
+}
+
+.secondary-text{
+  color: #1D2228;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5% 0px 5%;
+}
+
+.links{
+  display: flex;
+  width: 25%;
+  align-items: center;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: #1D2228;
+  margin-right: 10px;
+}
+
+.nav-link:hover{
+  color: #FB8122;
+  transition: ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+.logo-wrapper{
+  font-size: 1.75em;
+  padding: 15px;
+
+}
+.logo{
+  width: 25px;
+}
+
+.nav-button{
+  background-color: #FB8122;
+  color: #E1E2E2;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.nav-button a{
+  color: #E1E2E2;
+}
+
+.nav-button:hover{
+  background-color: #df721e;
+}
+
+.nav-button a:hover{
+  color: #E1E2E2;
+}
+
+.page-wrapper{
+  padding: 50px 5%;
+}
+
+.post-link{
+  text-decoration: none;
+}
+.post{
+  margin: 20px;
+  padding: 20px;
+  width: 350px;
+  border-radius: 20px;
+}
+
+.latest{
+  display: flex;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}

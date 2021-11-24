@@ -25,24 +25,24 @@ function HomePage() {
     }
 
     return (
-        <div className="page-wrapper">
+        <div className="page-wrapper primary-bg">
         {loading ? 
         <div className="content">
             <Tag text={"Latest Posts"}/>
         </div>
         :
         <div className="content">
-                <Tag text={"Latest Posts"}/>
-                <div className="scrollable">
-                
-                {posts.map((post)=>{
-                    if(posts[0] == "No posts yet!"){
-                        return <p>No posts yet!</p>
-                    }else{
-                        return <Link to={`/post/${post.id}`}><Post title={post.title} content={post.content.slice(0, 50) + "..."} date={post.timeCreated}/></Link>
-                    } 
-                })}
-                </div>
+                <Tag text={"Latest Posts"}/>   
+                <div className="latest">
+                    {posts.map((post)=>{
+                        if(posts[0] == "No posts yet!"){
+                            return <p>No posts yet!</p>
+                        }else{
+                            return <Link className="post-link" to={`/post/${post.id}`}><Post title={post.title} content={post.content.slice(0, 50) + "..."} date={post.timeCreated}/></Link>
+                        } 
+                    })}
+                </div>             
+
 
         </div>
         }

@@ -3,7 +3,9 @@ import { useParams, useNavigate} from 'react-router-dom'
 import { doc, getDoc } from "firebase/firestore"
 import {db} from "../firebase"
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { AiFillEdit } from 'react-icons/ai';
 
+import { useAuth } from '../contexts/AuthContext'
 
 function PostView() {
     const {id} = useParams()
@@ -11,6 +13,8 @@ function PostView() {
     const [post, setPost] = useState()
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
+    const { user, logout } = useAuth()
+
     useEffect(()=>{
         getPost()
     },[])
@@ -35,7 +39,14 @@ function PostView() {
             </div>
             :
             <div className="content">
-                <div><AiOutlineArrowLeft className="back-arrow" onClick={() => navigate(-1)}/></div>
+                <div className="header">
+                <AiOutlineArrowLeft className="post-icon back-arrow" onClick={() => navigate(-1)}/>
+                {user ? 
+                    <AiFillEdit className="post-icon edit" onClick={() => navigate(`/edit/${id}`)}/>
+                :
+                <></>
+                }
+                </div>
                 <hr className="separator" />
                 <div className="scrollable">
                     <h1>{post.title}</h1>
