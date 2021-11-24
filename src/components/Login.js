@@ -34,7 +34,7 @@ function Login() {
 
     return (
         <>
-            <Card>
+            <Card className="w-100 primary-bg primary-text ">
                 <Card.Body>
                     <h2 className="text-center mb-4">Log in</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -47,13 +47,10 @@ function Login() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" ref={passwordRef} required />
                         </Form.Group>
-                        <Button disabled={loading} className="w-100 mt-4" type="submit">Log in</Button>
+                        <Button disabled={loading} className="w-100 mt-4 submit-btn" type="submit">Log in</Button>
                     </Form>
                 </Card.Body>
             </Card>
-            <div className="w-100 text-center mt-2">
-                Need an account? <Link to="/login">Sign up</Link>
-            </div>
 
         </>
     )

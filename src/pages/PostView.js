@@ -34,11 +34,11 @@ function PostView() {
     return (
         <div className="page-wrapper">
             {loading ? 
-            <div className="content">
+            <div className="content off-white">
                 <h1>Loading...</h1>
             </div>
             :
-            <div className="content">
+            <div className="content off-white">
                 <div className="header">
                 <AiOutlineArrowLeft className="post-icon back-arrow" onClick={() => navigate(-1)}/>
                 {user ? 

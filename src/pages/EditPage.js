@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { AiFillDelete } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom'
-import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc, deleteDoc } from "firebase/firestore";
 import {db} from '../firebase'
 function EditPage() {
     const [title, setTitle] = useState("")
@@ -24,6 +25,11 @@ function EditPage() {
           navigate('/')
     }
 
+    const deletePost = async () => {
+        await deleteDoc(doc(db, "posts", id));
+        navigate('/')
+    }
+
     const getPost = async () => {
         setLoading(true)
         const docRef = doc(db, "posts", id);
@@ -42,9 +48,10 @@ function EditPage() {
         <div className="page-wrapper">
             {loading ? 
             <div className="content">
-            <div>
-                <AiOutlineArrowLeft className="back-arrow" onClick={() => navigate(-1)}/>
-            </div>
+                <div className="header">
+                <AiOutlineArrowLeft className="post-icon back-arrow" onClick={() => navigate(-1)}/>
+                <AiFillDelete className="post-icon delete" onClick={deletePost}/>
+                </div>
             <hr className="separator" />
             <div className="form">
                 <input
@@ -66,8 +73,9 @@ function EditPage() {
         </div>
             : 
             <div className="content">
-                <div>
-                    <AiOutlineArrowLeft className="back-arrow" onClick={() => navigate(-1)}/>
+                <div className="header">
+                    <AiOutlineArrowLeft className="post-icon back-arrow" onClick={() => navigate(-1)}/>
+                    <AiFillDelete className="post-icon delete" onClick={deletePost}/>
                 </div>
                 <hr className="separator" />
                 <div className="form">
