@@ -2,12 +2,18 @@ import React, {useState, useEffect} from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { AiFillDelete } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom'
+import { projectStorage } from '../firebase/firebase';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, getDoc, deleteDoc } from "firebase/firestore";
-import {db} from '../firebase'
+import {db} from '../firebase/firebase'
 function EditPage() {
     const [title, setTitle] = useState("")
     const [loading, setLoading] = useState(true)
     const [content, setContent] = useState("")
+    const [url, setUrl] = useState(null)
+    const [image, setImage] = useState(null)
+    const [error, setError] = useState(null)
+    const types = ['image/png', 'image/jpg', 'image/jpeg']
     const navigate = useNavigate()
     let {id} = useParams()
 
@@ -18,9 +24,19 @@ function EditPage() {
     const handleSubmit = async() => {
         const docRef = doc(db, "posts", id);
 
+        const storageRef = ref(projectStorage, '/' + image.name);
+        // 'file' comes from the Blob or File API
+        await uploadBytes(storageRef, image).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+        });
+
+        const url = await getDownloadURL(ref(projectStorage, '/'+image.name))
+        setUrl(url);
+
         await updateDoc(docRef, {
             title: title,
-            content: content
+            content: content,
+            imageUrl: url
           });
           navigate('/')
     }
@@ -42,6 +58,18 @@ function EditPage() {
           } else {
             console.log("No such document!");
           }
+    }
+
+    const handleImageChange = (e) => {
+        let selected = e.target.files[0];
+
+        if(selected && types.includes(selected.type)){
+            setImage(selected)
+            setError(null)
+        } else{
+            setImage(null);
+            setError("Please select a valid image file")
+        }
     }
 
     return (
@@ -67,7 +95,9 @@ function EditPage() {
                 onChange={(e)=>{
                     setContent(e.target.value)
                 }}
+                
                 />
+  
                 <button onClick={handleSubmit}>Post!</button>
             </div>
         </div>
@@ -95,6 +125,11 @@ function EditPage() {
                         setContent(e.target.value)
                     }}
                     />
+                    <input 
+                    type="file" 
+                    onChange={handleImageChange}
+                    />
+                    {error && <p>{error}</p>}
                     <button onClick={handleSubmit}>Post!</button>
                 </div>
             </div>

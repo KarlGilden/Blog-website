@@ -27,16 +27,6 @@ function Menubar() {
                     {user && <Link onClick={logout} className="nav-button" to="/">Log out</Link>}
                     {!user && <Link className="nav-button" to="/login">Log in</Link>}
                 </div>
-
-                {clicked && 
-                        <div className="small-links menu-text">
-                            <Link className="nav-link" to="/">Home</Link>
-                            <Link className="nav-link" to="/categories">Categories</Link>
-                            {user && <Link className="nav-link" to="/add-post">New Post</Link>}
-                            {user && <Link onClick={logout} className="nav-button" to="/">Log out</Link>}
-                            {!user && <Link className="nav-button" to="/login">Log in</Link>}
-                        </div>
-                }
                 <div className="navbars" onClick={()=>{setClicked(!clicked)}}>
                     <FaBars />
                 </div>
@@ -44,6 +34,15 @@ function Menubar() {
 
             </div>
 
+            {clicked && 
+                        <div className="small-links menu-text">
+                            <Link onClick={()=>{setClicked(!clicked)}} className="nav-link" to="/">Home</Link>
+                            <Link onClick={()=>{setClicked(!clicked)}} className="nav-link" to="/categories">Categories</Link>
+                            {user && <Link onClick={()=>{setClicked(!clicked)}} className="nav-link" to="/add-post">New Post</Link>}
+                            {user && <Link onClick={()=>{setClicked(!clicked)}} onClick={logout} className="nav-button" to="/">Log out</Link>}
+                            {!user && <Link onClick={()=>{setClicked(!clicked)}} className="nav-button" to="/login">Log in</Link>}
+                        </div>
+                }
 
 
 

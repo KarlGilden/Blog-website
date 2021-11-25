@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { collection, getDocs } from "firebase/firestore"
-import { Link} from 'react-router-dom'
-
-import {db} from "../firebase"
+import {db} from "../firebase/firebase"
 import Post from '../components/Post'
 import Tag from '../components/Tag'
 
@@ -38,7 +36,7 @@ function HomePage() {
                         if(posts[0] == "No posts yet!"){
                             return <p>No posts yet!</p>
                         }else{
-                            return <Post key={post.id} id={post.id} title={post.title.slice(0, 25) + "..."} content={post.content.slice(0, 50) + "..."} date={post.timeCreated}/>
+                            return <Post key={post.id} id={post.id} title={post.title.slice(0, 25) + "..."} content={post.content.slice(0, 50) + "..."} date={post.timeCreated} image={post.imageUrl}/>
                         } 
                     })}
                 </div>             
