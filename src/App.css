@@ -140,8 +140,8 @@ body{
   transition: transform 0.1s ease-in-out;
 }
 
-@media  screen and (max-width: 600px) {
-  .post-icon:hover{
+@media only screen and (max-width: 500px) {
+  .post:hover{
     transform: scale(1);
   }
 }
