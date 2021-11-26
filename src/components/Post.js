@@ -9,12 +9,18 @@ function Post(props) {
       };
 
     return (
-        <div onClick={()=>{navigate(`/post/${props.id}`)}} style={imageStyle}  className="post primary-text primary-bg">
-            <div className="post-wrapper">
-                <h1>{props.title}</h1>
-                <small>{props.date}</small>
-                <p>{props.content}</p>
+        <div onClick={()=>{navigate(`/post/${props.id}`)}} className="post primary-text">
+            <div className="image-wrapper">
+                <img className="post-image" src={props.image} alt="" />
             </div>
+            <div className="post-text">
+                <h1 className="secondary-text">{props.title}</h1>
+                <p className="secondary-text">{props.content}</p>
+                <small className="secondary-text">{props.date}</small>
+            </div>
+
+
+
         </div>
     )
 }
