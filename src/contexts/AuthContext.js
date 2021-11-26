@@ -3,8 +3,6 @@ import {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut,
-    setPersistence,
-    browserSessionPersistence,
     onAuthStateChanged 
 } from 'firebase/auth'
 import { auth } from '../firebase/firebase'

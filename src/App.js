@@ -1,19 +1,30 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext';
+import {useState} from 'react'
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import Menubar from './components/Menubar';
 import PostView from './pages/PostView';
 import AddPostPage from './pages/AddPostPage';
 import PrivateRoute from './components/PrivateRoute';
 import EditPage from './pages/EditPage';
+import Sidebar from './components/Sidebar'
+import Navbar from './components/Navbar'
+
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <>
       <Router>
         <AuthProvider>
-          <Menubar/>
+          <Sidebar isOpen={isOpen} toggle={toggle}/>
+          <Navbar  toggle={toggle}/>
           <Routes>
             
             <Route path="/" element={<HomePage/>}/>

@@ -6,7 +6,6 @@ import Post from '../components/Post'
 import Tag from '../components/Tag'
 
 function HomePage() {
-    const { user, logout } = useAuth()
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState(["No posts yet!"])
     const postCollectionRef = collection(db, "posts")
@@ -17,7 +16,6 @@ function HomePage() {
     const getPosts = async () => {
         setLoading(true)
         const data = await getDocs(postCollectionRef);
-        console.log(data)
         setPosts(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
         setLoading(false)
     }
