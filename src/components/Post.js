@@ -15,7 +15,6 @@ function Post(props) {
             </div>
             <div className="post-text">
                 <h1 className="secondary-text">{props.title}</h1>
-                <p className="secondary-text">{props.content}</p>
                 <small className="secondary-text">{props.date}</small>
             </div>
 

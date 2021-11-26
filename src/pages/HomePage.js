@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore"
 import {db} from "../firebase/firebase"
 import Post from '../components/Post'
 import Tag from '../components/Tag'
+import Header from '../components/Header'
 
 function HomePage() {
     const [loading, setLoading] = useState(true)
@@ -22,6 +23,7 @@ function HomePage() {
 
     return (
         <div className="page-wrapper off-white">
+            <Header/>
         {loading ? 
         <div className="content">
             <Tag text={"Latest Posts"}/>
