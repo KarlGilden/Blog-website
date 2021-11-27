@@ -23,7 +23,7 @@ function HomePage() {
 
     return (
         <div className="page-wrapper off-white">
-            <Header/>
+            <Header title="Welcome to my blog" text="This is a place where I can post updates on the projects I'm working on and my thoughts on the web development space"/>
             <Posts/>
         </div>
     )
