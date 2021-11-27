@@ -8,16 +8,24 @@ export const CategoriesContainer = styled.div`
     @media screen and (max-width:500px){
         flex-direction: column;
         justify-content: space-evenly;
-        align-items:center;
+        align-items:left;
     }
 `
 
 export const Category = styled.li`
     list-style:none;
     font-size: 1.25rem;
-    text-decoration: ${({tag}) => (tag ? 'underline' : 'none')};
+    border-top: ${({tag}) => (tag ? '1px #1D2228 solid' : 'none')};
+    border-bottom: ${({tag}) => (tag ? '1px #1D2228 solid' : 'none')};
+    font-weight: ${({tag}) => (tag ? 'bold' : 'none')};
     cursor: pointer;
     color: #1D2228;
+    padding: 5px 0px;
+
+
+    @media screen and (max-width:500px){
+        padding: 5px 0px
+    }
 `
 
 export const PostsContainer = styled.div`

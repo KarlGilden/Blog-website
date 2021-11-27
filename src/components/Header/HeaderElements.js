@@ -2,10 +2,14 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
     width:100%;
-    padding: 100px 5%;
+    padding: 75px 5%;
     display:flex;
     flex-direction:column;
     align-items: center;
+
+    @media screen and (max-width:500px){
+        padding: 50px 5%;
+    }
 `
 
 export const HeaderTitle = styled.h1`
