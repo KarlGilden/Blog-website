@@ -118,7 +118,7 @@ body{
 }
 .post{
   margin: 20px auto;
-  width: 350px;
+  width: 200px;
   border-radius: 2px;
   display: inline-block;
   z-index: 0;
@@ -144,7 +144,7 @@ body{
 }
 
 .post-text h1{
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .post:hover{
