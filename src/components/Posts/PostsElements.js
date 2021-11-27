@@ -15,7 +15,7 @@ export const CategoriesContainer = styled.div`
 export const Category = styled.li`
     list-style:none;
     font-size: 1.25rem;
-    text-decoration:underline;
+    text-decoration: ${({tag}) => (tag ? 'underline' : 'none')};
     cursor: pointer;
     color: #1D2228;
 `
@@ -24,6 +24,7 @@ export const PostsContainer = styled.div`
     display: grid;
     margin: 0 auto;
     width:fit-content;
+    min-height: 50vh;
     column-gap:25px;
     grid-template-columns: 1fr 1fr 1fr;
 

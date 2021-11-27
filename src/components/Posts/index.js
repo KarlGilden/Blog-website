@@ -9,22 +9,37 @@ function Posts() {
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState(["No posts yet!"])
     const postCollectionRef = collection(db, "posts")
+    const [currentPosts, setCurrentPosts] = useState(null)
+    const [tag, setTag] = useState(null)
     useEffect(()=>{
         getPosts()
     },[])
+
+    useEffect(()=>{
+        if(tag == null){
+            setCurrentPosts(posts)
+        }else{
+            setCurrentPosts(posts.filter((e)=>{
+                return e.tag == tag
+            }))
+        }
+    },[tag])
+    
     const getPosts = async () => {
         setLoading(true)
         const data = await getDocs(postCollectionRef);
         setPosts(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
+        setCurrentPosts(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
         setLoading(false)
     }
+
     return (
         <>
             <CategoriesContainer>
-                <Category>All</Category>
-                <Category>Dev Logs</Category>
-                <Category>Design patterns</Category>
-                <Category>Technology</Category>
+                <Category tag={tag == null} onClick={()=>{setTag(null)}}>All</Category>
+                <Category tag={tag == "Dev"} onClick={()=>{setTag("Dev")}}>Dev Logs</Category>
+                <Category tag={tag == "Pattern"} onClick={()=>{setTag("Pattern")}}>Design patterns</Category>
+                <Category tag={tag == "Tech"} onClick={()=>{setTag("Tech")}}>Technology</Category>
             </CategoriesContainer>
             {loading ? 
                 <PostsContainer>
@@ -32,11 +47,11 @@ function Posts() {
                 </PostsContainer>
                 :
                 <PostsContainer>
-                    {posts.map((post)=>{
+                    {currentPosts.map((post)=>{
                             if(posts[0] == "No posts yet!"){
                                 return <p>No posts yet!</p>
                             }else{
-                                return <Post key={post.id} id={post.id} title={post.title.slice(0, 25) + "..."} content={post.content.slice(0, 50) + "..."} date={post.timeCreated} image={post.imageUrl}/>
+                                return <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.timeCreated} image={post.imageUrl}/>
                             } 
                         })}
                 </PostsContainer>
