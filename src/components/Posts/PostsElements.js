@@ -4,6 +4,7 @@ export const CategoriesContainer = styled.div`
     display:flex;
     justify-content: space-evenly;
     margin-bottom: 25px;
+    padding: 0px 5%;
 
     @media screen and (max-width:500px){
         flex-direction: column;
@@ -23,11 +24,14 @@ export const Category = styled.li`
     padding: 5px 0px;
 
 
+
     @media screen and (max-width:500px){
         padding: 5px 0px
     }
 `
-
+export const PostsWrapper = styled.div`
+    padding: 50px 5%;
+`
 export const PostsContainer = styled.div`
     display: grid;
     margin: 0 auto;

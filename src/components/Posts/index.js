@@ -1,4 +1,4 @@
-import { PostsContainer, Category, CategoriesContainer } from './PostsElements'
+import { PostsContainer, Category, CategoriesContainer, PostsWrapper } from './PostsElements'
 import React, {useState, useEffect} from 'react'
 import { useAuth } from '../../contexts/AuthContext'
 import { collection, getDocs } from "firebase/firestore"
@@ -46,15 +46,17 @@ function Posts() {
                     Loading...
                 </PostsContainer>
                 :
-                <PostsContainer>
-                    {currentPosts.map((post)=>{
-                            if(posts[0] == "No posts yet!"){
-                                return <p>No posts yet!</p>
-                            }else{
-                                return <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.timeCreated} image={post.imageUrl}/>
-                            } 
-                        })}
-                </PostsContainer>
+                <PostsWrapper>
+                    <PostsContainer>
+                        {currentPosts.map((post)=>{
+                                if(posts[0] == "No posts yet!"){
+                                    return <p>No posts yet!</p>
+                                }else{
+                                    return <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.timeCreated} image={post.imageUrl}/>
+                                } 
+                            })}
+                    </PostsContainer>
+                </PostsWrapper>
                 }
 
         </>

@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import EditPage from './pages/EditPage';
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <AuthProvider>
           <Sidebar isOpen={isOpen} toggle={toggle}/>
           <Navbar  toggle={toggle}/>
+
           <Routes>
             
             <Route path="/" element={<HomePage/>}/>
@@ -50,6 +52,8 @@ function App() {
             />
 
           </Routes>
+          <Footer/>
+
         </AuthProvider>
       </Router>
     </>
