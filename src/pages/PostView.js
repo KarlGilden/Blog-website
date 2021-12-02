@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore"
 import {db} from "../firebase/firebase"
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { AiFillEdit } from 'react-icons/ai';
-
+import parse from 'html-react-parser';
 import { useAuth } from '../contexts/AuthContext'
 
 function PostView() {
@@ -51,7 +51,7 @@ function PostView() {
                 <div className="scrollable">
                     <h1>{post.title}</h1>
                     <small>{post.timeCreated}</small>
-                    <p className="post-content">{post.content}</p>
+                    <div className="post-content">{parse(post.content)}</div>
                 </div>
 
             </div>
