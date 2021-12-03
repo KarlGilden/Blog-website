@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { projectStorage } from '../firebase/firebase';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, getDoc, deleteDoc } from "firebase/firestore";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {db} from '../firebase/firebase'
 function EditPage() {
     const [title, setTitle] = useState("")
@@ -110,6 +112,7 @@ function EditPage() {
                 <hr className="separator" />
                 <div className="form">
                     <input
+                    className="title-input"
                     value={title}
                     placeholder="Title" 
                     type="text" 
@@ -117,14 +120,17 @@ function EditPage() {
                         setTitle(e.target.value)
                     }}
                     />
-                    <textarea 
-                    value={content}
-                    placeholder="Write away..." 
-                    type="text" 
-                    onChange={(e)=>{
-                        setContent(e.target.value)
-                    }}
-                    />
+                    <div className="editor">
+                    <CKEditor 
+                            editor={ClassicEditor}
+                            data={content}
+                            onChange={(e, editor) => {
+                                const data = editor.getData()
+                                setContent(data)
+                            }}
+                        />
+                    </div>
+
                     <input 
                     type="file" 
                     onChange={handleImageChange}

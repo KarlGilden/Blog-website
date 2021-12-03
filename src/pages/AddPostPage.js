@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { collection, addDoc } from "firebase/firestore"; 
 import { projectStorage } from '../firebase/firebase';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {db} from '../firebase/firebase'
 function AddPostPage() {
     const [title, setTitle] = useState("")
@@ -60,13 +62,19 @@ function AddPostPage() {
                         setTitle(e.target.value)
                     }}
                     />
-                    <textarea 
-                    placeholder="Write away..." 
-                    type="text" 
-                    onChange={(e)=>{
-                        setContent(e.target.value)
-                    }}
-                    />
+                    <div className="editor">
+                        <CKEditor
+                            style={{height:"100%"}}
+                            editor={ClassicEditor}
+                            data={content}
+                            onChange={(e, editor) => {
+                                const data = editor.getData()
+                                setContent(data)
+                            }}
+                        />
+
+                    </div>
+
                     <input 
                     type="file" 
                     onChange={handleImageChange}
